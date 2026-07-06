@@ -42,7 +42,7 @@ This is an Man in the Middle (MITM) attack home lab using `ettercap` for ARP poi
 | --- | --- | --- |
 | 1 | `eth0` | `vboxnet4` |
 
-#### 3. Both Debia Victims VM
+#### 3. Both Debian Victims VM
 
 | Adapter Number | Adapter Name | Network it is attached to |
 | --- | --- | --- |
@@ -163,7 +163,7 @@ In this command
 - `///` : All hosts, all ports
 - `/192.168.60.2//`: Gateway, all ports
 
-After issusing the command, spoofing and poisoning will begin.
+After issuing the command, spoofing and poisoning will begin.
 
 ![ettercap-screenshot](./assets/ettercap-screenshot.png)
 
@@ -248,7 +248,7 @@ So the username is `johndoe` and the password is `password@123` (after URL decod
 
 ## Cleanup
 
-In order to stop the lab, press CTRL+C on the terminal running ettercap. It will automatically send gratutious ARP messages to restore the proper ARP tables.
+In order to stop the lab, press CTRL+C on the terminal running ettercap. It will automatically send gratuitous ARP messages to restore the proper ARP tables.
 
 ## Remediation Steps
 

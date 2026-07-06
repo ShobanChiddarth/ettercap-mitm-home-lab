@@ -167,3 +167,76 @@ Now generate some traffic from the Victim VMs, and save the wireshark capture to
 
 The file I captured is [mitm-lab-capture.pcapng](./mitm-lab-capture.pcapng)
 
+## Analysing the capture
+
+We can filter the capture using queries. 
+
+### Victim 1
+
+We first filter Victim 1's traffic using the wireshark filter.
+
+```
+ip.addr == 192.168.60.102
+```
+
+![victim-1-wireshark-screenshot](./assets/victim-1-wireshark-screenshot.png)
+
+This will show us the packets that were sent from and to Victim 1's IP address.
+
+From reading the whole file with that filter, we can conclude that Victim 1 did the following things
+
+1. pinged `1.1.1.1`
+2. Did a DNS lookup on `google.com`
+3. Pinged `google.com`
+4. Sent a HTTP GET request to `httpbin.org/ip`
+5. Sent a HTTP GET request to `ifconfig.me`
+6. Sent a HTTP GET request to `amazon.com`
+
+
+### Victim 2
+
+Let's do the same for Victim 2. The filter query will be
+
+```
+ip.addr == 192.168.60.103
+```
+
+![victim-2-wireshark-screenshot](./assets/victim-2-wireshark-screenshot.png)
+
+From reading the entire filtered file, we can say
+
+1. Victim 2 opened firefox web browser as there are a lot of requests to mozilla related domains
+2. Visited `duckduckgo.com` but since it was over HTTPS we can't see the contents
+3. Sent a HTTP GET request to `testasp.vulnweb.com` (and since it was opened in a browser several other HTTP GET requests were sent to load fonts, icons and images)
+4. Sent a HTTP GET request to `testasp.vulnweb.com/Login.asp?RetURL=%2FDefault%2Easp%3F` (opened the login page)
+5. Sent a HTTP POST request to `testasp.vulnweb.com/Login.asp?RetURL=%2FDefault%2Easp%3F` (entered the credentials and clicked login)
+
+![victim-2-password](./assets/victim-2-password.png)
+
+We can investigate this specific capture to find out the login credentials. I copied it as text from Wireshark GUI and here is the content
+
+```
+''EA@@]<g, P(>PPOST /Login.asp?RetURL=%2FDefault%2Easp%3F HTTP/1.1
+Host: testasp.vulnweb.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 38
+Origin: http://testasp.vulnweb.com
+DNT: 1
+Sec-GPC: 1
+Connection: keep-alive
+Referer: http://testasp.vulnweb.com/Login.asp?RetURL=%2FDefault%2Easp%3F
+Cookie: ASPSESSIONIDAAATQBSA=PCOMDECBNANACHKMPIDDANAM
+Upgrade-Insecure-Requests: 1
+Priority: u=0, i
+
+tfUName=johndoe&tfUPass=password%40123
+```
+
+So the username is `johndoe` and the password is `password@123` (after URL decoding).
+
+
+

@@ -214,7 +214,7 @@ ip.addr == 192.168.60.103
 From reading the entire filtered file, we can say
 
 1. Victim 2 opened firefox web browser as there are a lot of requests to mozilla related domains
-2. Visited `duckduckgo.com` but since it was over HTTPS we can't see the contents
+2. Visited `DuckDuckGo.com` but since it was over HTTPS we can't see the contents
 3. Sent a HTTP GET request to `testasp.vulnweb.com` (and since it was opened in a browser several other HTTP GET requests were sent to load fonts, icons and images)
 4. Sent a HTTP GET request to `testasp.vulnweb.com/Login.asp?RetURL=%2FDefault%2Easp%3F` (opened the login page)
 5. Sent a HTTP POST request to `testasp.vulnweb.com/Login.asp?RetURL=%2FDefault%2Easp%3F` (entered the credentials and clicked login)
@@ -246,5 +246,31 @@ tfUName=johndoe&tfUPass=password%40123
 
 So the username is `johndoe` and the password is `password@123` (after URL decoding).
 
+## Cleanup
+
+In order to stop the lab, press CTRL+C on the terminal running ettercap. It will automatically send gratutious ARP messages to restore the proper ARP tables.
+
+## Remediation Steps
+
+In order to protect yourself from these types of attacks,
+
+1. If you are a personal user, **Install a VPN or CloudFlare WARP on your host** when you are in untrusted networks like public Wi-Fi networks.
+   
+   These 2 solutions will form an encrypted tunnel between your host and the VPN servers or WARP servers and send all network traffic through it. This way, even in insecure HTTP websites, your connection will be seen as encrypted. Also, the attacker could not look at what websites you are visiting due to the encrypted tunnel, the attacker was able to see Victim 2 visited DuckDuckGo because of the lack of a tunnel.
+
+2. If you are a website admin, **make sure your website uses HTTPS**
+
+   The Attacker was able to see that the victim was visiting DuckDuckGo but could not see the traffic contents because of HTTPS. So if your website uses HTTP, chances are high that user credentials can be stolen.
+
+3. If you are a network administrator
+   - Enable client isolation for public facing networks
+   - Enable ARP spoofing protection on enterprise switches
+   - Enable DHCP spoofing protection on enterprise switches
+
+   With these configurations, if an attacker tries to poison ARP tables or DHCP, the interface that connects to them will be shut down and they will be cut off. And a syslog message will be generated and sent.
+
+## Conclusion
+
+An ARP spoofing MITM Attack was successfully carried out, network traffic was analysed using Wireshark and credentials were sniffed over an insecure HTTP connection, in a controlled lab environment. And remediation steps were documented so people can protect themselves from such attacks.
 
 

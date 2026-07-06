@@ -23,20 +23,20 @@ This is an Man in the Middle (MITM) attack home lab using `ettercap` for ARP poi
 
 #### Adapter details
 
-##### pfSense VM
+##### 1. pfSense VM
 
 | Adapter Number | Adapter Name | Network it is attached to |
 | --- | --- | --- |
 | 1 | `em0` (WAN Adapter) | `NAT` |
 | 2 | `em1` (LAN Adapter) | `vboxnet4` |
 
-##### Kali VM
+##### 2. Kali VM
 
 | Adapter Number | Adapter Name | Network it is attached to |
 | --- | --- | --- |
 | 1 | `eth0` | `vboxnet4` |
 
-##### Debia Victims VM
+##### 3. Debia Victims VM
 
 | Adapter Number | Adapter Name | Network it is attached to |
 | --- | --- | --- |

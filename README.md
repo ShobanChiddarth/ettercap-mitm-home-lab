@@ -67,9 +67,8 @@ Screenshot:
 
 ![ip-forwarding-screenshot](./assets/ip-forwarding-screenshot.png)
 
-## Performing the attack
 
-### Recon
+## Recon
 
 Objectives:
 
@@ -81,7 +80,7 @@ We need to know
 
 We already know this as we designed the network while setting up the lab. But here is how an attacked would do reconnaisance in a real attack scenario.
 
-#### 1. Private IP and 2. Subnet
+### 1. Private IP and 2. Subnet
 
 ```bash
 ifconfig eth0 <or any other interface name>
@@ -94,7 +93,7 @@ Will print the private IP of the attacker's machine, along with the subnet mask.
 From that, we can use it to reconstruct the network address. In our case, it is `192.168.60.0/24`
 
 
-#### 3. Gateway IP
+### 3. Gateway IP
 
 We can issue this command to show the route table to find out the default gateway's address
 
@@ -106,7 +105,7 @@ ip route
 
 Now we know that the router's IP address is `192.168.60.2`
 
-#### 4. List of other hosts IP addresses
+### 4. List of other hosts IP addresses
 
 We can use the tool `netdiscover` to identify other hosts in the network connected to the network the attacker's machine is connected to.
 
@@ -126,7 +125,7 @@ Apart from Kali, the list of hosts shown through netdiscover are
 | `192.168.60.103` | Unknown - Victim |
 
 
-### Recon Summary
+## Recon Summary
 
 Our reconnaissance is over. Here is the information we have gathered
 

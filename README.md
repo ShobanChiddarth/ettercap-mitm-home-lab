@@ -2,41 +2,39 @@
 
 This is an Man in the Middle (MITM) attack home lab using `ettercap` for ARP poisoning and Wireshark for credential sniffing in insecure HTTP connections.
 
-## Setup
-
-### Network Architecture
+## Network Architecture Setup
 
 ![network-architecture](./assets/network-architecture.png)
 
-#### VM Details
+### VM Details
 
 - 1 pfSense as router
 - 1 Kali VM as attacker
 - 2 Debian VMs as victims
 
-#### Networks
+### Networks
 
 | Network Name | Purpose | IP Addressing |
 | --- | --- | --- |
 | VirtualBox Host Only Ethernet Adapter 4 (`vboxnet4`) | LAN for the Attacker and Victims | Network: `192.168.60.0/24`<br>Gateway: `192.168.60.2`<br>DNS:`192.168.60.2` |
 | NAT | Public Internet connectivity | Fully managed by VirtualBox |
 
-#### Adapter details
+### Adapter details
 
-##### 1. pfSense VM
+#### 1. pfSense VM
 
 | Adapter Number | Adapter Name | Network it is attached to |
 | --- | --- | --- |
 | 1 | `em0` (WAN Adapter) | `NAT` |
 | 2 | `em1` (LAN Adapter) | `vboxnet4` |
 
-##### 2. Kali VM
+#### 2. Kali VM
 
 | Adapter Number | Adapter Name | Network it is attached to |
 | --- | --- | --- |
 | 1 | `eth0` | `vboxnet4` |
 
-##### 3. Both Debia Victims VM
+#### 3. Both Debia Victims VM
 
 | Adapter Number | Adapter Name | Network it is attached to |
 | --- | --- | --- |

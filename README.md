@@ -2,6 +2,14 @@
 
 This is an Man in the Middle (MITM) attack home lab using `ettercap` for ARP poisoning and Wireshark for credential sniffing over insecure HTTP connections.
 
+## Pre-Requisites
+
+1. VirtualBox
+2. Kali VM
+3. Debian Desktop VM
+4. pfSense VM
+5. [Virtual Lab Architecture](https://dev.to/shobanchiddarth/the-superior-way-to-make-vms-communicate-with-each-other-as-well-as-host-with-internet-access-42m1)
+
 ## Network Architecture Setup
 
 ![network-architecture](./assets/network-architecture.png)

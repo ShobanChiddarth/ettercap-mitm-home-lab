@@ -12,7 +12,7 @@ This is an Man in the Middle (MITM) attack home lab using `ettercap` for ARP poi
 
 - 1 pfSense as router
 - 1 Kali VM as attacker
-- 1 Debian Desktop VM that runs 10 docker containers using MACVLAN adapter to stimulate victims
+- 2 Debian VMs as victims
 
 #### Networks
 
@@ -36,9 +36,10 @@ This is an Man in the Middle (MITM) attack home lab using `ettercap` for ARP poi
 | --- | --- | --- |
 | 1 | `eth0` | `vboxnet4` |
 
-##### 3. Debia Victims VM
+##### 3. Both Debia Victims VM
 
 | Adapter Number | Adapter Name | Network it is attached to |
 | --- | --- | --- |
 | 1 | `enp0s3` | `vboxnet4` |
+
 

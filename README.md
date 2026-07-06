@@ -269,6 +269,14 @@ In order to protect yourself from these types of attacks,
 
    With these configurations, if an attacker tries to poison ARP tables or DHCP, the interface that connects to them will be shut down and they will be cut off. And a syslog message will be generated and sent.
 
+## Demo Video
+
+Scan this qr code:
+
+![youtube-demo-qr](./assets/yt-demo-qr.png)
+
+Or click here: [youtu.be/jZ10v4bCBzY](https://youtu.be/jZ10v4bCBzY)
+
 ## Conclusion
 
 An ARP spoofing MITM Attack was successfully carried out, network traffic was analysed using Wireshark and credentials were sniffed over an insecure HTTP connection, in a controlled lab environment. And remediation steps were documented so people can protect themselves from such attacks.

@@ -1,6 +1,6 @@
 # Ettercap MITM Home Lab
 
-This is an Man in the Middle (MITM) attack home lab using `ettercap` for ARP poisoning and Wireshark for credential sniffing in insecure HTTP connections.
+This is an Man in the Middle (MITM) attack home lab using `ettercap` for ARP poisoning and Wireshark for credential sniffing over insecure HTTP connections.
 
 ## Network Architecture Setup
 

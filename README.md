@@ -273,4 +273,4 @@ In order to protect yourself from these types of attacks,
 
 An ARP spoofing MITM Attack was successfully carried out, network traffic was analysed using Wireshark and credentials were sniffed over an insecure HTTP connection, in a controlled lab environment. And remediation steps were documented so people can protect themselves from such attacks.
 
-
+The attack worked because ARP has no authentication. Any host on the LAN can send a spoofed ARP reply and other hosts will accept it without question, updating their ARP cache with the attacker's MAC address.
